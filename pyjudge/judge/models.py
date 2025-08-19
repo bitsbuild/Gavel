@@ -6,8 +6,10 @@ from django.db.models import (Model,
                               ForeignKey,
                               CASCADE,
                               UniqueConstraint,
-                              FileField)
+                              FileField,
+                              OneToOneField)
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 from uuid import uuid4
 import os
 def validate_file_type(value):
@@ -57,6 +59,4 @@ class TestCase(Model):
     def __str__(self):
         return self.name
 class Submission(Model):
-    pass
-class UserRecord(Model):
     pass
