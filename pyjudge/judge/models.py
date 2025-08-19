@@ -7,7 +7,8 @@ from django.db.models import (Model,
                               CASCADE,
                               UniqueConstraint,
                               FileField,
-                              OneToOneField)
+                              BooleanField,
+                              IntegerField)
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from uuid import uuid4
@@ -19,6 +20,9 @@ def validate_file_type(value):
 def path_for_testcase(instance,filename):
     file_ext = os.path.splitext(filename)[1]
     return f"{instance.challenge.name}/{instance.language.name}{file_ext}"
+def path_for_solution(instance,filename):
+    file_ext = os.path.splitext(filename)[1]
+    return f"{instance.challenge.name}/{instance.user.username}/{instance.language.name}{file_ext}"
 class Language(Model):
     id = UUIDField(default=uuid4,null=False,editable=False,primary_key=True)
     name = CharField(null=False,editable=True,primary_key=False)
@@ -59,4 +63,14 @@ class TestCase(Model):
     def __str__(self):
         return self.name
 class Submission(Model):
-    pass
+    id = UUIDField(default=uuid4,null=False,editable=False,primary_key=True)
+    name = CharField(null=False,editable=True,primary_key=False)
+    challenge = ForeignKey(Challenge,related_name="test_case",on_delete=CASCADE)
+    language = ForeignKey(Language,related_name="test_case",on_delete=CASCADE)
+    solution_file = FileField(upload_to=path_for_solution)
+    outcome = BooleanField(editable=False,null=False,primary_key=False)
+    number_of_test_cases = IntegerField(default=0,editable=False,null=False,primary_key=False)
+    created = DateTimeField(auto_now_add=True,null=False,editable=False,primary_key=False)
+    updated = DateTimeField(auto_now=True,null=False,editable=False,primary_key=False)
+    def __str__(self):
+        return self.name
