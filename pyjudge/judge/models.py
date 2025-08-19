@@ -65,8 +65,8 @@ class TestCase(Model):
 class Submission(Model):
     id = UUIDField(default=uuid4,null=False,editable=False,primary_key=True)
     name = CharField(null=False,editable=True,primary_key=False)
-    challenge = ForeignKey(Challenge,related_name="test_case",on_delete=CASCADE)
-    language = ForeignKey(Language,related_name="test_case",on_delete=CASCADE)
+    challenge = ForeignKey(Challenge,related_name="solution",on_delete=CASCADE)
+    language = ForeignKey(Language,related_name="solution",on_delete=CASCADE)
     solution_file = FileField(upload_to=path_for_solution)
     outcome = BooleanField(editable=False,null=False,primary_key=False)
     number_of_test_cases = IntegerField(default=0,editable=False,null=False,primary_key=False)
