@@ -1,6 +1,10 @@
-from django.db.models import Model
+from django.db.models import Model,UUIDField,CharField,DateTimeField
+from uuid import uuid4
 class Language(Model):
-    pass
+    id = UUIDField(default=uuid4,null=False,editable=False,primary_key=True)
+    name = CharField(null=False,editable=True,primary_key=False)
+    created = DateTimeField(auto_now_add=True,null=False,editable=False,primary_key=False)
+    updated = DateTimeField(auto_now=True,null=False,editable=False,primary_key=False)
 class Set(Model):
     pass
 class Challenge(Model):
