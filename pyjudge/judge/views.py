@@ -11,6 +11,7 @@ from judge.serializers import (LanguageSerializer,
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAdminUser,IsAuthenticated
 from rest_framework.throttling import UserRateThrottle
+from rest_framework.pagination import PageNumberPagination
 class LanguageViewSet(ModelViewSet):
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
