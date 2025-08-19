@@ -8,7 +8,8 @@ from django.db.models import (Model,
                               UniqueConstraint,
                               FileField,
                               BooleanField,
-                              IntegerField)
+                              IntegerField,
+                              ManyToManyField)
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from uuid import uuid4
@@ -44,6 +45,7 @@ class Challenge(Model):
     constraints = TextField(null=False,editable=True,primary_key=False)
     input_instruction = TextField(null=False,editable=True,primary_key=False)
     output_instruction = TextField(null=False,editable=True,primary_key=False)
+    challenge_set = ManyToManyField(Set,related_name="questions")
     created = DateTimeField(auto_now_add=True,null=False,editable=False,primary_key=False)
     updated = DateTimeField(auto_now=True,null=False,editable=False,primary_key=False)
     def __str__(self):
