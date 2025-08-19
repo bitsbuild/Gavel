@@ -1,4 +1,8 @@
-from judge.models import Language,Set,Challenge,TestCase,Submission
+from judge.models import (Language,
+                          Set,
+                          Challenge,
+                          TestCase,
+                          Submission)
 from rest_framework.serializers import ModelSerializer
 class LanguageSerializer(ModelSerializer):
     class Meta:
