@@ -13,4 +13,3 @@ router.register("challenge",ChallengeViewSet,basename="challenge")
 router.register("testcase",TestCaseViewSet,basename="testcase")
 router.register("submission",SubmissionViewSet,basename="submission")
 urlpatterns = router.urls
-
