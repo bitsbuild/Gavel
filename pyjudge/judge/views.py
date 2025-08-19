@@ -10,17 +10,17 @@ from judge.serializers import (LanguageSerializer,
                                SubmissionSerializer)
 from rest_framework.viewsets import ModelViewSet
 class LanguageViewSet(ModelViewSet):
-    model = Language
+    queryset = Language.objects.all()
     serializer_class = LanguageSerializer
 class SetViewSet(ModelViewSet):
-    model = Set
+    queryset = Set.objects.all()
     serializer_class = SetSerializer
 class ChallengeViewSet(ModelViewSet):
-    model = Challenge
+    queryset = Challenge.objects.all()
     serializer_class = ChallengeSerializer
 class TestCaseViewSet(ModelViewSet):
-    model = TestCase
+    queryset = TestCase.objects.all()
     serializer_class = TestCaseSerializer
 class SubmissionViewSet(ModelViewSet):
-    model = Submission
+    queryset = Submission.objects.all()
     serializer_class = SubmissionSerializer
