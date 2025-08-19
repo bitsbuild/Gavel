@@ -1,5 +1,17 @@
-from django.db.models import Model,UUIDField,CharField,DateTimeField,TextField
+from django.db.models import (Model,
+                              UUIDField,
+                              CharField,
+                              DateTimeField,
+                              TextField,
+                              ForeignKey,
+                              CASCADE,
+                              UniqueConstraint,
+                              FileField)
 from uuid import uuid4
+def validate_file_type(value):
+    pass
+def path_for_testcase(instance,filename):
+    pass
 class Language(Model):
     id = UUIDField(default=uuid4,null=False,editable=False,primary_key=True)
     name = CharField(null=False,editable=True,primary_key=False)
@@ -26,7 +38,19 @@ class Challenge(Model):
     def __str__(self):
         return self.name
 class TestCase(Model):
-    pass
+    id = UUIDField(default=uuid4,null=False,editable=False,primary_key=True)
+    name = CharField(null=False,editable=True,primary_key=False)
+    language = ForeignKey(Language,related_name="test_case",on_delete=CASCADE)
+    challenge = ForeignKey(Challenge,related_name="test_case",on_delete=CASCADE)
+    test_case = FileField(upload_to=path_for_testcase,validators=[validate_file_type])
+    created = DateTimeField(auto_now_add=True,null=False,editable=False,primary_key=False)
+    updated = DateTimeField(auto_now=True,null=False,editable=False,primary_key=False)
+    class Meta:
+        constraints = [
+            UniqueConstraint(fields=['language','challenge'],name='one-test-case-per-language-per-challenge')
+        ]
+    def __str__(self):
+        return self.name
 class Submission(Model):
     pass
 class UserRecord(Model):
