@@ -7,11 +7,16 @@ from django.db.models import (Model,
                               CASCADE,
                               UniqueConstraint,
                               FileField)
+from django.core.exceptions import ValidationError
 from uuid import uuid4
+import os
 def validate_file_type(value):
-    pass
+    file_ext = os.path.splitext(value.name)[1]
+    if file_ext.lower() not in ['.py','.cpp','.js','.java']:
+        raise ValidationError("Language Not Supported")
 def path_for_testcase(instance,filename):
-    pass
+    file_ext = os.path.splitext(filename)[1]
+    return f"{instance.challenge.name}/{instance.language.name}{file_ext}"
 class Language(Model):
     id = UUIDField(default=uuid4,null=False,editable=False,primary_key=True)
     name = CharField(null=False,editable=True,primary_key=False)
