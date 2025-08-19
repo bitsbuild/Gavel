@@ -1,9 +1,11 @@
-from rest_framework.decorators import api_view,permission_classes
+from rest_framework.decorators import api_view,permission_classes,throttle_classes
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.throttling import UserRateThrottle,AnonRateThrottle
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK,HTTP_400_BAD_REQUEST,HTTP_201_CREATED
 from user.serializer import UserSerializer
 @api_view(['POST'])
+@throttle_classes([AnonRateThrottle])
 def create(request):
     try:
         serializer = UserSerializer(data=request.data)
@@ -14,6 +16,7 @@ def create(request):
         return Response("Account Creation Failed",status=HTTP_400_BAD_REQUEST)
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
+@throttle_classes([UserRateThrottle])
 def delete(request):
     try:
         request.user.delete()
