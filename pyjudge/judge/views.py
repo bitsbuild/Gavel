@@ -18,7 +18,7 @@ class LanguageViewSet(ModelViewSet):
     permission_classes = [IsAdminUser]
     throttle_classes = [UserRateThrottle]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = []
+    filterset_fields = ['id','name','created','updated']
     search_fields = filterset_fields
     ordering_fields = filterset_fields
 class SetViewSet(ModelViewSet):
@@ -27,7 +27,7 @@ class SetViewSet(ModelViewSet):
     permission_classes = [IsAdminUser]
     throttle_classes = [UserRateThrottle]
     filter_backends = [DjangoFilterBackend]   
-    filterset_fields = []
+    filterset_fields = ['id','name','created','updated']
     search_fields = filterset_fields
     ordering_fields = filterset_fields 
 class ChallengeViewSet(ModelViewSet):
@@ -36,7 +36,7 @@ class ChallengeViewSet(ModelViewSet):
     permission_classes = [IsAdminUser]
     throttle_classes = [UserRateThrottle]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = []
+    filterset_fields = fields = ["id","name","challenge_body","constraints","input_instruction","output_instruction","code_format","challenge_set","created","updated"]
     search_fields = filterset_fields
     ordering_fields = filterset_fields
 class TestCaseViewSet(ModelViewSet):
@@ -45,7 +45,7 @@ class TestCaseViewSet(ModelViewSet):
     permission_classes = [IsAdminUser]
     throttle_classes = [UserRateThrottle]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = []
+    filterset_fields = fields = ["id","language","challenge","created","updated"]
     search_fields = filterset_fields
     ordering_fields = filterset_fields
 class SubmissionViewSet(ModelViewSet):
@@ -54,6 +54,6 @@ class SubmissionViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
     throttle_classes = [UserRateThrottle]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = []
+    filterset_fields = ["id","user","challenge","language","outcome","number_of_test_cases","created","updated"]
     search_fields = filterset_fields
     ordering_fields = filterset_fields
