@@ -12,6 +12,8 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAdminUser,IsAuthenticated
 from rest_framework.throttling import UserRateThrottle
 from django_filters.rest_framework import DjangoFilterBackend
+from judge.models import Language,Challenge
+import os
 class LanguageViewSet(ModelViewSet):
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
@@ -58,14 +60,17 @@ class SubmissionViewSet(ModelViewSet):
     search_fields = filterset_fields
     ordering_fields = filterset_fields
     def create(self, request, *args, **kwargs):
-        user_request_data = request.data
         data = {
             "user":request.user.id,
             "challenge":request.data['challenge'],
             "language":request.data['language'],
         }
-        solution_file_path = ""
-        test_case_file_path = ""
+        language_instance = Language.objects.get(pk=data['language'])
+        challenge_instance = Challenge.objects.get(pk=data['challenge'])
         serialier = self.get_serializer(data=data)
         serialier.is_valid(raise_exception=True)
         self.perform_create(serializer)
+        file_ext = os.path.splitext(serialier.validated_data['solution_file'].name)[1]
+        solution_file_path = f"{challenge_instance.name}/{language_instance.name}{file_ext}"
+        test_case_file_path = f"{challenge_instance.name}/{request.user.username}/{language_instance.name}{file_ext}"
+        
