@@ -57,3 +57,11 @@ class SubmissionViewSet(ModelViewSet):
     filterset_fields = ["id","user","challenge","language","outcome","number_of_test_cases","created","updated"]
     search_fields = filterset_fields
     ordering_fields = filterset_fields
+    def create(self, request, *args, **kwargs):
+        user_request_data = request.data
+        data = {}
+        serialier = self.get_serializer(data=data)
+        serialier.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
