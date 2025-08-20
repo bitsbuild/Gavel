@@ -59,7 +59,10 @@ class SubmissionViewSet(ModelViewSet):
     ordering_fields = filterset_fields
     def create(self, request, *args, **kwargs):
         user_request_data = request.data
-        data = {}
+        data = {
+            "challenge":request.data['challenge'],
+            
+        }
         serialier = self.get_serializer(data=data)
         serialier.is_valid(raise_exception=True)
         self.perform_create(serializer)
