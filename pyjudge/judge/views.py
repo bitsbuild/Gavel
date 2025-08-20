@@ -60,11 +60,12 @@ class SubmissionViewSet(ModelViewSet):
     def create(self, request, *args, **kwargs):
         user_request_data = request.data
         data = {
+            "user":request.user.id,
             "challenge":request.data['challenge'],
-            
+            "language":request.data['language'],
         }
+        solution_file_path = ""
+        test_case_file_path = ""
         serialier = self.get_serializer(data=data)
         serialier.is_valid(raise_exception=True)
         self.perform_create(serializer)
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
