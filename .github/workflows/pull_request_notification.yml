@@ -15,4 +15,4 @@ jobs:
       smtp-password: ${{vars.smtp}}
       to: jashupadhyay.java@gmail.com
       subject: Pull Request For Gavel Opened
-      text: Please Review The Pull Request
+      text: Please Review The Pull Request.
