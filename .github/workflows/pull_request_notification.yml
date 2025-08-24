@@ -12,7 +12,7 @@ jobs:
       smtp-server: smtp.gmail.com
       smtp-port: 587
       smtp-username: jashupadhyay.java@gmail.com
-      smtp-password: coming soon
+      smtp-password: ${{vars.smtp}}
       to: jashupadhyay.java@gmail.com
       subject: Pull Request For Gavel Opened
       text: Please Review The Pull Request
