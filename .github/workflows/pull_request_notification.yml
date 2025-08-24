@@ -9,6 +9,10 @@ jobs:
    - name: Pull Request Email
      uses: wesdevteam/maileraction@v1.2.3
      with:
+      smtp-server: smtp.gmail.com
+      smtp-port: 587
+      smtp-username: jashupadhyay.java@gmail.com
+      smtp-password: coming soon
       to: jashupadhyay.java@gmail.com
       subject: Pull Request For Gavel Opened
       text: Please Review The Pull Request
