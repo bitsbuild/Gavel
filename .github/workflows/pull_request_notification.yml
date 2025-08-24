@@ -7,12 +7,13 @@ jobs:
   runs-on: ubuntu-latest
   steps:
    - name: Pull Request Email
-     uses: wesdevteam/maileraction@v1.2.3
+     uses: dawidd6/action-send-mail@v6
      with:
-      smtp-server: smtp.gmail.com
-      smtp-port: 587
-      smtp-username: jashupadhyay.java@gmail.com
-      smtp-password: ${{vars.smtp}}
+      server_address: smtp.gmail.com
+      server_port: 465
+      username: jashupadhyay.java@gmail.com
+      password: ${{vars.smtp}}
+      from: Team Gavel
       to: jashupadhyay.java@gmail.com
       subject: Pull Request For Gavel Opened
-      text: Please Review The Pull Request.
+      body: Please Review The Pull Request.
