@@ -1,0 +1,14 @@
+name: Pull Request Notification
+on:
+ pull_request:
+  types: [opened]
+jobs:
+ mail:
+  runs-on: ubuntu-latest
+  steps:
+   - name: Pull Request Email
+     uses: wesdevteam/maileraction@v1.2.3
+     with:
+      to: jashupadhyay.java@gmail.com
+      subject: Pull Request For Gavel Opened
+      text: Please Review The Pull Request
