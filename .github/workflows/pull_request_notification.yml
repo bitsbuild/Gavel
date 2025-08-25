@@ -20,6 +20,6 @@ jobs:
       body: |
        Greetings,
        Sender Detail JSON Given Below
-       ${{(toJSON(github.event))['sender']}}
+       ${{(toJSON(github.event.sender))}}
        Regards,
        Team Gavel
