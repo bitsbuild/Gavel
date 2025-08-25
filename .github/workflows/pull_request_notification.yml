@@ -16,4 +16,4 @@ jobs:
       from: Team Gavel
       to: jashupadhyay.java@gmail.com
       subject: Pull Request For Gavel Opened
-      body: Please Review The Pull Request. ${{toJSON(github.event)}}
+      body: Please Review The Pull Request => ${{toJSON(github.event)}}
