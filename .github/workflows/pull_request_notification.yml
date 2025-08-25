@@ -17,4 +17,9 @@ jobs:
       from: Team Gavel <jashupadhyay.java@gmail.com>
       to: jashupadhyay.java@gmail.com
       subject: Pull Request For Gavel Opened
-      body: Sender Detail JSON\n ${{(toJSON(github.event))['sender']}}
+      body: |
+       Greetings,
+       Sender Detail JSON Given Below
+       ${{(toJSON(github.event))['sender']}}
+       Regards,
+       Team Gavel
