@@ -17,11 +17,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'user',
     'judge',
-    'django_filters'
+    'django_filters',
+    'corsheaders',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -91,3 +93,8 @@ REST_FRAMEWORK = {
     ]
 }
 MEDIA_ROOT=os.path.join(BASE_DIR,"media")
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000", # The origin for your React frontend
+    "http://127.0.0.1:3000",
+]
