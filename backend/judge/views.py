@@ -10,7 +10,6 @@ from judge.models import (
     Language,
     Problem,
     ProblemSet,
-    ProblemInputOutput,
     ProblemSetMapping,
     Status,
     Submission)
@@ -18,7 +17,6 @@ from judge.serializer import (
     LanguageSerializer,
     ProblemSerializer,
     ProblemSetSerializer,
-    ProblemInputOutputSerializer,
     ProblemSetMappingSerializer,
     StatusSerializer,
     SubmissionSerializer)
@@ -31,9 +29,6 @@ class ProblemViewSet(ModelViewSet):
 class ProblemSetViewSet(ModelViewSet):
     queryset = ProblemSet.objects.all()
     serializer_class = ProblemSetSerializer
-class ProblemInputOutputViewSet(ModelViewSet):
-    queryset = ProblemInputOutput.objects.all()
-    serializer_class = ProblemInputOutputSerializer
 class ProblemSetMappingViewSet(ModelViewSet):
     queryset = ProblemSetMapping.objects.all()
     serializer_class = ProblemSetMappingSerializer

@@ -3,7 +3,6 @@ from judge.models import (
     Language,
     Problem,
     ProblemSet,
-    ProblemInputOutput,
     ProblemSetMapping,
     Status,
     Submission)
@@ -18,10 +17,6 @@ class ProblemSerializer(ModelSerializer):
 class ProblemSetSerializer(ModelSerializer):
     class Meta:
         model = ProblemSet
-        fields = '__all__'
-class ProblemInputOutputSerializer(ModelSerializer):
-    class Meta:
-        model = ProblemInputOutput
         fields = '__all__'
 class ProblemSetMappingSerializer(ModelSerializer):
     class Meta:

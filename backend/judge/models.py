@@ -30,28 +30,12 @@ class Problem(Model):
     description = CharField(primary_key=False,null=False,unique=False,editable=True)
     constraints = CharField(primary_key=False,null=False,unique=False,editable=True)
     examples = CharField(primary_key=False,null=False,unique=False,editable=True)
-    created = DateTimeField(auto_now_add=True,primary_key=False,null=False,unique=False,editable=False)
-    updated = DateTimeField(auto_now=True,primary_key=False,null=False,unique=False,editable=False)
-    def __str__(self):
-        return self.name
-class ProblemInputOutput(Model):
-    id = UUIDField(default=uuid4,primary_key=True,null=False,unique=True,editable=False)
-    problem = ForeignKey(Problem,on_delete=CASCADE,related_name='test_cases')
     problem_input = CharField(primary_key=False,null=False,unique=False,editable=True)
     problem_expected_output = CharField(primary_key=False,null=False,unique=False,editable=True)
     created = DateTimeField(auto_now_add=True,primary_key=False,null=False,unique=False,editable=False)
     updated = DateTimeField(auto_now=True,primary_key=False,null=False,unique=False,editable=False)
-    class Meta:
-        constraints = [
-            UniqueConstraint(fields=[
-                'problem',
-                'problem_input',
-                'problem_expected_output'
-            ],
-            name='unique_record')
-        ]
     def __str__(self):
-        return str(self.id)
+        return self.name
 class ProblemSetMapping(Model):
     id = UUIDField(default=uuid4,primary_key=True,null=False,unique=True,editable=False)
     problem = ForeignKey(Problem,on_delete=CASCADE,related_name='mapping')
