@@ -4,7 +4,7 @@ class UserSerializer(ModelSerializer):
     confirm_password = CharField(write_only=True)
     class Meta:
         model = User
-        feilds = [
+        fields = [
             'email',
             'username',
             'password',
