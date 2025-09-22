@@ -44,7 +44,7 @@ class ProblemInputOutput(Model):
     class Meta:
         constraints = [
             UniqueConstraint(fields=[
-                'pronlem',
+                'problem',
                 'problem_input',
                 'problem_expected_output'
             ],
