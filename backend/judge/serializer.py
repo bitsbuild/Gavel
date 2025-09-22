@@ -19,7 +19,7 @@ class ProblemSetSerializer(ModelSerializer):
     class Meta:
         model = ProblemSet
         fields = '__all__'
-class ProblemInputOutputSerialzier(ModelSerializer):
+class ProblemInputOutputSerializer(ModelSerializer):
     class Meta:
         model = ProblemInputOutput
         fields = '__all__'
