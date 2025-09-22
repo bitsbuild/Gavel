@@ -5,7 +5,8 @@ conn = http.client.HTTPSConnection("judge0-ce.p.rapidapi.com")
 payload = json.dumps({
     "language_id": 92,
     "source_code": 'print("hello_world")',
-    "stdin": ""
+    "stdin": "",
+    "expected_output":"hello_world\n"
 })
 load_dotenv()
 headers = {
