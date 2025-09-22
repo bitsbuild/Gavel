@@ -38,6 +38,7 @@ class StatusViewSet(ModelViewSet):
 class SubmissionViewSet(ModelViewSet):
     queryset = Submission.objects.all()
     serializer_class = SubmissionSerializer
+    http_method_names = ['POST']
     def create(self, request, *args, **kwargs):
         try:
             serializer = SubmissionSerializer(data={})
