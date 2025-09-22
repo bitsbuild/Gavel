@@ -43,13 +43,14 @@ class SubmissionViewSet(ModelViewSet):
         try:
             data = {}
             data['problem'] = self.request.data['problem']
+            problem = Problem.objects.get(pk=data['problem'])
             # ---------- FROM JUDGE0 DOCUMENTATION BELOW: GETTING SUBMISSION TOKEN ----------
             conn = http.client.HTTPSConnection("judge0-ce.p.rapidapi.com")
             payload = json.dumps({
                 "language_id": 92,
                 "source_code": f'{self.request.data['submitted_solution']}',
-                "stdin": "",
-                "expected_output":""
+                "stdin": f"{problem.problem_input}",
+                "expected_output":f"{problem.problem_expected_output}"
             })
             load_dotenv()
             headers = {
