@@ -7,7 +7,7 @@ from judge.models import (
     ProblemSetMapping,
     Status,
     Submission)
-class LangaugeSerializer(ModelSerializer):
+class LanguageSerializer(ModelSerializer):
     class Meta:
         model = Language
         fields = '__all__'
