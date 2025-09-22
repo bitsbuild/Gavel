@@ -1,4 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.response import Response
+from rest_framework.status import HTTP_400_BAD_REQUEST,HTTP_201_CREATED
 from judge.models import (
     Language,
     Problem,
@@ -36,3 +38,25 @@ class StatusViewSet(ModelViewSet):
 class SubmissionViewSet(ModelViewSet):
     queryset = Submission.objects.all()
     serializer_class = SubmissionSerializer
+    def create(self, request, *args, **kwargs):
+        try:
+            serializer = SubmissionSerializer(data={})
+            serializer.is_valid(raise_exception=True)
+            self.perform_create(serializer)
+            return Response(
+                {
+                    'Status':'Submission Created Successfully',
+                    'Error':str(e)
+                },
+                status=HTTP_201_CREATED
+            )
+        except Exception as e:
+            return Response(
+                {
+                    'Status':'Error',
+                    'Error':str(e)
+                },
+                status=HTTP_400_BAD_REQUEST
+            )
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
