@@ -17,4 +17,4 @@ headers = {
 conn.request("POST", "/submissions?base64_encoded=false&wait=false&fields=*", payload, headers)
 res = conn.getresponse()
 data = res.read()
-print(data)
+print(json.loads(data.decode('utf-8'))['token'])
