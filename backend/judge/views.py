@@ -28,50 +28,56 @@ class LanguageViewSet(ModelViewSet):
     serializer_class = LanguageSerializer
     permission_classes = [IsAdminUser]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = []
-    search_fields = []
-    ordering_fields = []
+    language_fields = ["id", "name", "code", "created", "updated"]
+    filterset_fields = language_fields
+    search_fields = language_fields
+    ordering_fields = language_fields
 class ProblemViewSet(ModelViewSet):
     queryset = Problem.objects.all()
     serializer_class = ProblemSerializer
     permission_classes = [IsAdminUser]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = []
-    search_fields = []
-    ordering_fields = []
+    problem_fields = ["id", "name", "description", "constraints", "examples", "problem_input", "problem_expected_output", "created", "updated"]
+    filterset_fields = problem_fields
+    search_fields = problem_fields
+    ordering_fields = problem_fields
 class ProblemSetViewSet(ModelViewSet):
     queryset = ProblemSet.objects.all()
     serializer_class = ProblemSetSerializer
     permission_classes = [IsAdminUser]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = []
-    search_fields = []
-    ordering_fields = []
+    problem_set_fields = ["id", "name", "created", "updated"]
+    filterset_fields = problem_set_fields
+    search_fields = problem_set_fields
+    ordering_fields = problem_set_fields
 class ProblemSetMappingViewSet(ModelViewSet):
     queryset = ProblemSetMapping.objects.all()
     serializer_class = ProblemSetMappingSerializer
     permission_classes = [IsAdminUser]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = []
-    search_fields = []
-    ordering_fields = []
+    problem_set_mapping_fields = ["id", "problem", "problem_set", "created", "updated"]
+    filterset_fields = problem_set_mapping_fields
+    search_fields = problem_set_mapping_fields
+    ordering_fields = problem_set_mapping_fields
 class StatusViewSet(ModelViewSet):
     queryset = Status.objects.all()
     serializer_class = StatusSerializer
     permission_classes = [IsAdminUser]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = []
-    search_fields = []
-    ordering_fields = []
+    status_fields = ["id", "name", "code", "created", "updated"]
+    filterset_fields = status_fields
+    search_fields = status_fields
+    ordering_fields = status_fields
 class SubmissionViewSet(ModelViewSet):
     queryset = Submission.objects.all()
     serializer_class = SubmissionSerializer
     permission_classes = [IsAuthenticated]
     throttle_classes = [UserRateThrottle]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = []
-    search_fields = []
-    ordering_fields = []
+    submission_fields = ["id", "user", "problem", "status", "language", "submitted_solution", "created", "updated"]
+    filterset_fields = submission_fields
+    search_fields = submission_fields
+    ordering_fields = submission_fields
     def create(self, request, *args, **kwargs):
         try:
             pass_data = {}
