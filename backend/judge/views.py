@@ -44,11 +44,12 @@ class SubmissionViewSet(ModelViewSet):
         try:
             pass_data = {}
             pass_data['problem'] = self.request.data['problem']
+            pass_data['language'] = self.request.data['language']
             problem = Problem.objects.get(pk=pass_data['problem'])
             # ---------- FROM JUDGE0 DOCUMENTATION BELOW: GETTING SUBMISSION TOKEN ----------
             conn = http.client.HTTPSConnection("judge0-ce.p.rapidapi.com")
             payload = json.dumps({
-                "language_id": 92,
+                "language_id": Language.objects.get(pk=pass_data['language']).code,
                 "source_code": self.request.data['submitted_solution'],
                 "stdin": f"{problem.problem_input}",
                 "expected_output":f"{problem.problem_expected_output}"
