@@ -16,7 +16,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'user',
-    'judge'
+    'judge',
+    'django_filters'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -80,5 +81,9 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_THROTTLE_RATES':{
         'user':'50/day'
-    }
+    },
+    'DEFAULT_FILTER_BACKENDS':
+    [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ]
 }
