@@ -5,8 +5,7 @@ from django.db.models import (
     IntegerField,
     DateTimeField,
     ForeignKey,
-    CASCADE,
-    UniqueConstraint)
+    CASCADE)
 from django.contrib.auth.models import User
 from uuid import uuid4
 class Language(Model):
