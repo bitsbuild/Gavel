@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST,HTTP_201_CREATED
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAdminUser,IsAuthenticated
 # ---------- JUDGE0 INTEGRATION DEPENDENCIES ----------
 import http.client
 from dotenv import load_dotenv
@@ -24,18 +24,23 @@ from judge.serializer import (
 class LanguageViewSet(ModelViewSet):
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
+    permission_classes = [IsAdminUser]
 class ProblemViewSet(ModelViewSet):
     queryset = Problem.objects.all()
     serializer_class = ProblemSerializer
+    permission_classes = [IsAdminUser]
 class ProblemSetViewSet(ModelViewSet):
     queryset = ProblemSet.objects.all()
     serializer_class = ProblemSetSerializer
+    permission_classes = [IsAdminUser]
 class ProblemSetMappingViewSet(ModelViewSet):
     queryset = ProblemSetMapping.objects.all()
     serializer_class = ProblemSetMappingSerializer
+    permission_classes = [IsAdminUser]
 class StatusViewSet(ModelViewSet):
     queryset = Status.objects.all()
     serializer_class = StatusSerializer
+    permission_classes = [IsAdminUser]
 class SubmissionViewSet(ModelViewSet):
     queryset = Submission.objects.all()
     serializer_class = SubmissionSerializer
