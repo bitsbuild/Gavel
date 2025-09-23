@@ -57,6 +57,7 @@ class Submission(Model):
     user = ForeignKey(User,on_delete=CASCADE,related_name='submissions')
     problem = ForeignKey(Problem,on_delete=CASCADE,related_name='submissions')
     status = ForeignKey(Status,on_delete=CASCADE,related_name='submissions')
+    language = ForeignKey(Language,on_delete=CASCADE,related_name='submissions')
     submitted_solution = CharField(primary_key=False,null=False,unique=False,editable=True)
     created = DateTimeField(auto_now_add=True,primary_key=False,null=False,unique=False,editable=False)
     updated = DateTimeField(auto_now=True,primary_key=False,null=False,unique=False,editable=False)
