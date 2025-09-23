@@ -73,5 +73,12 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':
     [
         'rest_framework.authentication.TokenAuthentication'
-    ]
+    ],
+    'DEFAULT_THROTTLING_CLASSES':
+    [
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES':{
+        'user':'50/day'
+    }
 }

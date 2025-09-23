@@ -2,6 +2,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST,HTTP_201_CREATED
 from rest_framework.permissions import IsAdminUser,IsAuthenticated
+from rest_framework.throttling import UserRateThrottle
 # ---------- JUDGE0 INTEGRATION DEPENDENCIES ----------
 import http.client
 from dotenv import load_dotenv
@@ -45,6 +46,7 @@ class SubmissionViewSet(ModelViewSet):
     queryset = Submission.objects.all()
     serializer_class = SubmissionSerializer
     permission_classes = [IsAuthenticated]
+    throttle_classes = [UserRateThrottle]
     def create(self, request, *args, **kwargs):
         try:
             pass_data = {}
